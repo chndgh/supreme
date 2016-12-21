@@ -3,6 +3,8 @@ package com.bengi.controller;
 import com.bengi.model.User;
 import com.bengi.repository.ParticipantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.simp.annotation.SubscribeMapping;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,6 +16,8 @@ import java.util.Collection;
 /**
  * Created by edward on 16/12/20.
  */
+
+@Controller
 public class ChartController {
     @Autowired
     ParticipantRepository participantRepository;
@@ -28,7 +32,8 @@ public class ChartController {
         return "chart";
     }
 
+    @SubscribeMapping("/chat.participants")
     public Collection<User> retrieveParticipants() {
-        return participantRepository.
+        return participantRepository.getActiveSessions().values();
     }
 }
