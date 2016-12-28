@@ -17,7 +17,7 @@ import java.util.Collection;
  * Created by edward on 16/12/20.
  */
 
-
+@Controller
 public class ChartController {
     @Autowired
     ParticipantRepository participantRepository;
